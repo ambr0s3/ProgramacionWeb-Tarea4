@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="grid.css" media="screen" title="no title" charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <div id="root" class="container">
+    </div>
+    <script>
+
+     function createGrid(rows, columns) {
+        var cellsLimit = rows * columns;
+        var container = document.getElementById("root");
+        for(var i = 0; i < cellsLimit; i++) {
+          var div = document.createElement("div");
+          div.classList.add("cell");
+          container.appendChild(div);
+        }
+      }
+
+      function addClickEvent(grid) {
+        for(var i = 0; i < grid.length; i++) {
+          grid[i].onclick = function() {
+            for(var i = 0; i < grid.length; i++) {
+              grid[i].classList.remove("active");
+            }
+            this.classList.add("active");
+          }
+        }
+      }
+
+      function createSnake() {
+       var x = getRandomInt(0, 10);
+       var y = getRandomInt(0, 10);
+       var head = getCell(x, y);
+       head.classList.add("active-head");
+       var snakeHead = { cell: head, x: x, y: y }
+       var snakeDirection = { x: 1, y: 0 }
+       snake.push(snakeHead);
+       createTail(snakeHead, snakeDirection, 4);
+      }
+
+      function createTail(head, dir, numCells){
+
+
+      }
+
+        
+      function getCellIndex(coordX, coordY, width) {
+        return (width * coordX) + coordY;
+      }
+
+      function getRandomInt(min, max) {
+        min = Math.ceil(min);
+        max = Math.floor(max);
+        return Math.floor(Math.random() * (max - min)) + min;
+      }
+
+      const rows = 10;
+      const columns = 10;
+      createGrid(rows,columns);
+      createTail(snakeHead,snakeDirection,4);
+      const snakeHead = createSnake(grid);
+      var grid = document.getElementsByClassName("cell");
+      const snakeDirection = {x :0, y: 1};
+
+    </script>
+  </body>
+</html>
